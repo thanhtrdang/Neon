@@ -22,6 +22,9 @@
 public let AutoHeight : CGFloat = -1
 public let AutoWidth : CGFloat = -1
 
+extension CGSize {
+    public static let auto = CGSize(width: AutoWidth, height: AutoHeight)
+}
 
 // MARK: Corner
 //

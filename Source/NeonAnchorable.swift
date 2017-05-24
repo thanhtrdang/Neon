@@ -39,8 +39,22 @@ public extension Anchorable {
         
         return self
     }
+    
+    @discardableResult
+    public func fillSuperview(insets: UIEdgeInsets) -> Self {
+        return fillSuperview(left: insets.left, right: insets.right, top: insets.top, bottom: insets.bottom)
+    }
 
-
+    @discardableResult
+    public func fillSuperview(horizontal: CGFloat) -> Self {
+        return fillSuperview(left: horizontal, right: horizontal)
+    }
+    
+    @discardableResult
+    public func fillSuperview(vertical: CGFloat) -> Self {
+        return fillSuperview(top: vertical, bottom: vertical)
+    }
+    
     /// Anchor a view in the center of its superview.
     ///
     /// - parameters:
@@ -49,7 +63,7 @@ public extension Anchorable {
     ///   - height: The height of the view.
     ///
     @discardableResult
-    public func anchorInCenter(width: CGFloat, height: CGFloat) -> Self {
+    public func anchorInCenter(width: CGFloat = AutoWidth, height: CGFloat = AutoHeight) -> Self {
         let xOrigin : CGFloat = (superFrame.width / 2.0) - (width / 2.0)
         let yOrigin : CGFloat = (superFrame.height / 2.0) - (height / 2.0)
 
@@ -68,6 +82,10 @@ public extension Anchorable {
         return self
     }
 
+    @discardableResult
+    public func anchorInCenter(size: CGSize) -> Self {
+        return anchorInCenter(width: size.width, height: size.height)
+    }
 
     /// Anchor a view in one of the four corners of its superview.
     ///
@@ -85,7 +103,7 @@ public extension Anchorable {
     ///   - height: The height of the view.
     ///
     @discardableResult
-    public func anchorInCorner(_ corner: Corner, xPad: CGFloat, yPad: CGFloat, width: CGFloat, height: CGFloat) -> Self {
+    public func anchorInCorner(_ corner: Corner = .topLeft, xPad: CGFloat = 0.0, yPad: CGFloat = 0.0, width: CGFloat = AutoWidth, height: CGFloat = AutoHeight) -> Self {
         var xOrigin : CGFloat = 0.0
         var yOrigin : CGFloat = 0.0
 
@@ -121,7 +139,11 @@ public extension Anchorable {
 
         return self
     }
-
+    
+    @discardableResult
+    public func anchorInCorner(_ corner: Corner, padding: CGPoint, size: CGSize) -> Self {
+        return anchorInCorner(corner, xPad: padding.x, yPad: padding.y, width: size.width, height: size.height)
+    }
 
     /// Anchor a view in its superview, centered on a given edge.
     ///
@@ -140,7 +162,7 @@ public extension Anchorable {
     ///   - height: The height of the view.
     ///
     @discardableResult
-    public func anchorToEdge(_ edge: Edge, padding: CGFloat, width: CGFloat, height: CGFloat) -> Self {
+    public func anchorToEdge(_ edge: Edge = .left, padding: CGFloat, width: CGFloat, height: CGFloat) -> Self {
         var xOrigin : CGFloat = 0.0
         var yOrigin : CGFloat = 0.0
 
@@ -176,6 +198,10 @@ public extension Anchorable {
         return self
     }
 
+    @discardableResult
+    public func anchorToEdge(_ edge: Edge, padding: CGFloat, size: CGSize) -> Self {
+        return anchorToEdge(edge, padding: padding, width: size.width, height: size.height)
+    }
 
     /// Anchor a view in its superview, centered on a given edge and filling either the width or
     /// height of that edge. For example, views anchored to the `.Top` or `.Bottom` will have
@@ -244,5 +270,10 @@ public extension Anchorable {
         }
         
         return self
+    }
+    
+    @discardableResult
+    public func anchorAndFillEdge(_ edge: Edge, padding: CGFloat, otherSize: CGFloat) -> Self {
+        return anchorAndFillEdge(edge, xPad: padding, yPad: padding, otherSize: otherSize)
     }
 }
