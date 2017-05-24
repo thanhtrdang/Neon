@@ -25,13 +25,15 @@ extension View : Frameable, Anchorable, Alignable, Groupable {
         return superview.frame
     }
 
-    public func setDimensionAutomatically() {
+    public func setDimensionAutomatically() -> Self {
         #if os(iOS)
-            self.sizeToFit()
+            sizeToFit()
         #else
-            self.autoresizesSubviews = true
-            self.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+            autoresizesSubviews = true
+            autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         #endif
+        
+        return self
     }
 }
 
@@ -47,5 +49,8 @@ extension CALayer : Frameable, Anchorable, Alignable, Groupable {
         return superlayer.frame
     }
 
-    public func setDimensionAutomatically() { /* no-op here as this shouldn't apply to CALayers */ }
+    public func setDimensionAutomatically() -> Self {
+        /* no-op here as this shouldn't apply to CALayers */
+        return self
+    }
 }
