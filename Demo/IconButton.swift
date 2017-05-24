@@ -29,7 +29,7 @@ class IconButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        imageView.anchorToEdge(.top, padding: 0, width: 24, height: 24)
-        label.align(.underCentered, relativeTo: imageView, padding: 5, width: self.width, height: 15)
+        imageView.anchorToEdge(.top, padding: 0, size: CGSize(width: 24, height: 24))
+        label.align(.underCentered, relativeTo: imageView, padding: 5, size: CGSize(width: self.width, height: 15))
     }
 }

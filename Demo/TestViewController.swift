@@ -30,7 +30,7 @@ class TestViewController: UIViewController {
         view.layer.addSublayer(anchorLayer)
 
         anchorViewA.backgroundColor = UIColor(red: 229/255.0, green: 72/255.0, blue: 26/255.0, alpha: 1.0)
-        anchorViewA.text = ""
+        anchorViewA.text = "A"
         anchorViewA.textAlignment = .center
         anchorViewA.font = UIFont.boldSystemFont(ofSize: 20)
         anchorViewA.textColor = UIColor.white

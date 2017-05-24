@@ -108,7 +108,10 @@ public extension Alignable {
         return self
     }
 
-
+    @discardableResult
+    public func align(_ align: Align, relativeTo sibling: Frameable, padding: CGFloat, size: CGSize, offset: CGFloat = 0) -> Self {
+        return self.align(align, relativeTo: sibling, padding: padding, width: size.width, height: size.height, offset: offset)
+    }
 
     /// Align a view relative to a sibling view in the same superview, and automatically expand the width to fill
     /// the superview with equal padding between the superview and sibling view.
